@@ -1,0 +1,53 @@
+[
+    {
+      "question": "Co można znaleźć w lodówce?",
+      "answers": [
+        { "answer": "Mleko", "points": 30 },
+        { "answer": "Ser", "points": 25 },
+        { "answer": "Jajka", "points": 20 },
+        { "answer": "Masło", "points": 15 },
+        { "answer": "Woda", "points": 10 }
+      ]
+    },
+    {
+      "question": "Co zabierasz na plażę?",
+      "answers": [
+        { "answer": "Ręcznik", "points": 30 },
+        { "answer": "Krem do opalania", "points": 25 },
+        { "answer": "Okulary przeciwsłoneczne", "points": 20 },
+        { "answer": "Parasol", "points": 15 },
+        { "answer": "Piłkę plażową", "points": 10 }
+      ]
+    },
+    {
+      "question": "Co robisz, gdy pada deszcz?",
+      "answers": [
+        { "answer": "Czytam książkę", "points": 30 },
+        { "answer": "Oglądam telewizję", "points": 25 },
+        { "answer": "Śpię", "points": 20 },
+        { "answer": "Gotuję", "points": 15 },
+        { "answer": "Sprzątam", "points": 10 }
+      ]
+    },
+    {
+      "question": "Co można znaleźć w damskiej torebce?",
+      "answers": [
+        { "answer": "Portfel", "points": 30 },
+        { "answer": "Telefon", "points": 25 },
+        { "answer": "Klucze", "points": 20 },
+        { "answer": "Kosmetyki", "points": 15 },
+        { "answer": "Chusteczki", "points": 10 }
+      ]
+    },
+    {
+      "question": "Co robimy rano?",
+      "answers": [
+        { "answer": "Myjemy zęby", "points": 30 },
+        { "answer": "Jemy śniadanie", "points": 25 },
+        { "answer": "Ubieramy się", "points": 20 },
+        { "answer": "Idziemy do pracy", "points": 15 },
+        { "answer": "Pijemy kawę", "points": 10 }
+      ]
+    }
+  ]
+  

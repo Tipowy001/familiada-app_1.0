@@ -1,0 +1,81 @@
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import TeamSelector from "./components/TeamSelector";
+import QuestionManager from "./components/QuestionManager";
+
+const App = () => {
+  const [startingTeam, setStartingTeam] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [currentTeam, setCurrentTeam] = useState(null);
+  const [scores, setScores] = useState({ czerwoni: 0, niebiescy: 0 });
+  const [errors, setErrors] = useState(0);
+
+  const handleTeamSelect = (team) => {
+    setStartingTeam(team);
+    setCurrentTeam(team);
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-yellow-400 font-mono">
+      <header className="text-center py-8">
+        <motion.h1 
+          className="text-5xl font-extrabold mb-4"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          🎧 PANEL DJ-A
+        </motion.h1>
+        <motion.p 
+          className="text-lg text-gray-400"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          Witaj w swojej Familiadzie!
+        </motion.p>
+      </header>
+
+      <main className="flex justify-center items-center">
+        <AnimatePresence>
+          {!startingTeam ? (
+            <motion.div
+              key="teamSelector"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+            >
+              <TeamSelector setStartingTeam={handleTeamSelect} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="questionManager"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              className="w-full"
+            >
+              <QuestionManager
+                questions={questions}
+                setQuestions={setQuestions}
+                currentQuestion={currentQuestion}
+                setCurrentQuestion={setCurrentQuestion}
+                currentTeam={currentTeam}
+                setCurrentTeam={setCurrentTeam}
+                scores={scores}
+                setScores={setScores}
+                errors={errors}
+                setErrors={setErrors}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+    </div>
+  );
+};
+
+export default App;

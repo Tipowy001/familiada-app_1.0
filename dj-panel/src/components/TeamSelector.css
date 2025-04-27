@@ -1,0 +1,41 @@
+/* /src/components/TeamSelector.css */
+.team-selector {
+    text-align: center;
+    color: #facc15;
+  }
+  
+  .team-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .team-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .team-button.red {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .team-button.red:hover {
+    background-color: #dc2626;
+  }
+  
+  .team-button.blue {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .team-button.blue:hover {
+    background-color: #2563eb;
+  }
+  
