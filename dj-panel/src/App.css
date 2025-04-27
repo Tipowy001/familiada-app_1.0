@@ -1,81 +1,88 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import TeamSelector from "./components/TeamSelector";
-import QuestionManager from "./components/QuestionManager";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-const App = () => {
-  const [startingTeam, setStartingTeam] = useState(null);
-  const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [currentTeam, setCurrentTeam] = useState(null);
-  const [scores, setScores] = useState({ czerwoni: 0, niebiescy: 0 });
-  const [errors, setErrors] = useState(0);
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  font-family: 'Press Start 2P', cursive;
+  color: #222;
+}
 
-  const handleTeamSelect = (team) => {
-    setStartingTeam(team);
-    setCurrentTeam(team);
-  };
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
 
-  return (
-    <div className="min-h-screen bg-black text-yellow-400 font-mono">
-      <header className="text-center py-8">
-        <motion.h1 
-          className="text-5xl font-extrabold mb-4"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          🎧 PANEL DJ-A
-        </motion.h1>
-        <motion.p 
-          className="text-lg text-gray-400"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          Witaj w swojej Familiadzie!
-        </motion.p>
-      </header>
+.title {
+  font-size: 2rem;
+  color: #FFD700;
+  text-shadow: 0 0 5px #FFD700, 0 0 20px #FFD700;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
-      <main className="flex justify-center items-center">
-        <AnimatePresence>
-          {!startingTeam ? (
-            <motion.div
-              key="teamSelector"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5 }}
-            >
-              <TeamSelector setStartingTeam={handleTeamSelect} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="questionManager"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              <QuestionManager
-                questions={questions}
-                setQuestions={setQuestions}
-                currentQuestion={currentQuestion}
-                setCurrentQuestion={setCurrentQuestion}
-                currentTeam={currentTeam}
-                setCurrentTeam={setCurrentTeam}
-                scores={scores}
-                setScores={setScores}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
-    </div>
-  );
-};
+.button {
+  background-color: #0044cc;
+  color: white;
+  border: 3px solid #000;
+  padding: 15px 30px;
+  margin: 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #000;
+}
 
-export default App;
+.button:hover {
+  background-color: #002a80;
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.button-danger {
+  background-color: #cc0000;
+}
+
+.button-danger:hover {
+  background-color: #800000;
+}
+
+.list {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  border: 4px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 6px 6px 0 #000;
+  margin-top: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  background: #fff;
+  color: #000;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}

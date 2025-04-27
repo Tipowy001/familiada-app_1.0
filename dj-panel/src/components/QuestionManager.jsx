@@ -1,4 +1,3 @@
-// /src/components/QuestionManager.jsx
 import React, { useState } from "react";
 import socket from "../services/socket";
 
@@ -73,6 +72,7 @@ const QuestionManager = ({
     setManualQuestion("");
     setManualAnswers([{ answer: "", points: 0 }]);
     setCurrentQuestionIndex(0);
+
     socket.emit("send_question", null);
     socket.emit("update_scores", { czerwoni: 0, niebiescy: 0 });
     socket.emit("wrong_answer", { errors: 0 });
@@ -106,43 +106,44 @@ const QuestionManager = ({
   };
 
   return (
-    <div className="min-h-screen bg-black text-yellow-400 flex flex-col items-center py-8 space-y-8 font-mono">
-      <h1 className="text-4xl font-bold text-shadow">FAMILIADA</h1>
-      <h2 className="text-2xl">Treść pytania: {currentQuestion?.question || "Brak pytania"}</h2>
-      <h3 className="text-xl">Aktualnie odpowiadają: <span className="text-cyan-400">{currentTeam?.toUpperCase() || "BRAK"}</span></h3>
+    <div className="list" style={{ textAlign: 'center' }}>
+      <h2 className="title">FAMILIADA</h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h3>Treść pytania: {currentQuestion?.question || "Brak pytania"}</h3>
+      <h4>Aktualnie odpowiadają: <span style={{ color: '#3498db' }}>{currentTeam?.toUpperCase() || "BRAK"}</span></h4>
+
+      <div style={{ margin: '20px 0', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
         {currentQuestion?.answers.map((ans, idx) => (
           <button
             key={idx}
+            className="button"
             onClick={() => revealAnswer(idx)}
-            className="border-2 border-yellow-400 bg-black p-4 rounded-xl text-xl w-40 hover:bg-yellow-400 hover:text-black"
           >
             {ans.answer.toUpperCase()} ({ans.points})
           </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-4 justify-center">
-        <button onClick={registerError} className="border-2 border-red-500 text-red-500 px-6 py-3 rounded-xl hover:bg-red-500 hover:text-black">BŁĄD</button>
-        <button onClick={resetGame} className="border-2 border-white text-white px-6 py-3 rounded-xl hover:bg-white hover:text-black">RESET GRY</button>
-        <button onClick={handleNextQuestion} className="border-2 border-green-500 text-green-500 px-6 py-3 rounded-xl hover:bg-green-500 hover:text-black">NASTĘPNE PYTANIE</button>
-        <button onClick={handleRevealAll} className="border-2 border-orange-400 text-orange-400 px-6 py-3 rounded-xl hover:bg-orange-400 hover:text-black">ODKRYJ WSZYSTKIE</button>
+      <div className="button-group">
+        <button className="button button-danger" onClick={registerError}>BŁĄD</button>
+        <button className="button button-danger" onClick={resetGame}>RESET GRY</button>
+        <button className="button" onClick={handleNextQuestion}>NASTĘPNE PYTANIE</button>
+        <button className="button" onClick={handleRevealAll}>ODKRYJ WSZYSTKIE</button>
       </div>
 
-      <div className="text-center space-y-2">
+      <div style={{ marginTop: '20px' }}>
         <p>CZERWONI: {scores.czerwoni}</p>
         <p>NIEBIESCY: {scores.niebiescy}</p>
       </div>
 
-      <div className="w-full max-w-md border-t border-yellow-400 pt-8">
-        <h3 className="text-xl mb-4">Załaduj nowe pytanie lub wpisz ręcznie:</h3>
+      <div className="" style={{ marginTop: '30px' }}>
+        <h3>Załaduj nowe pytanie lub wpisz ręcznie:</h3>
 
         <input
           type="file"
           accept=".json"
           onChange={loadJSONFile}
-          className="block w-full text-center mb-4"
+          className="input"
         />
 
         <input
@@ -150,31 +151,31 @@ const QuestionManager = ({
           placeholder="Treść pytania"
           value={manualQuestion}
           onChange={(e) => setManualQuestion(e.target.value)}
-          className="block w-full p-2 rounded bg-black border-2 border-yellow-400 text-yellow-400 mb-4"
+          className="input"
         />
 
         {manualAnswers.map((ans, idx) => (
-          <div key={idx} className="flex gap-2 mb-2">
+          <div key={idx} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder={`Odpowiedź ${idx + 1}`}
               value={ans.answer}
               onChange={(e) => handleAnswerChange(idx, "answer", e.target.value)}
-              className="flex-1 p-2 rounded bg-black border-2 border-yellow-400 text-yellow-400"
+              className="input"
             />
             <input
               type="number"
               placeholder="Punkty"
               value={ans.points}
               onChange={(e) => handleAnswerChange(idx, "points", parseInt(e.target.value))}
-              className="w-24 p-2 rounded bg-black border-2 border-yellow-400 text-yellow-400"
+              className="input"
             />
           </div>
         ))}
 
-        <div className="flex gap-4 justify-center mt-4">
-          <button onClick={addAnswerField} className="border-2 border-yellow-400 text-yellow-400 px-4 py-2 rounded-xl hover:bg-yellow-400 hover:text-black">Dodaj odpowiedź</button>
-          <button onClick={handleManualSubmit} className="border-2 border-yellow-400 text-yellow-400 px-4 py-2 rounded-xl hover:bg-yellow-400 hover:text-black">Zatwierdź pytanie</button>
+        <div className="button-group">
+          <button className="button" onClick={addAnswerField}>Dodaj odpowiedź</button>
+          <button className="button" onClick={handleManualSubmit}>Zatwierdź pytanie</button>
         </div>
       </div>
     </div>

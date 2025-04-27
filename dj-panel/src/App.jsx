@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import socket from './services/socket';
 import TeamSelector from './components/TeamSelector';
@@ -28,17 +29,17 @@ function App() {
   }, []);
 
   return (
-    <div className="dj-container">
-      <h1 className="dj-title">🎧 PANEL DJ-A 🎧</h1>
+    <div className="container">
+      <h1 className="title">🎧 PANEL DJ-A 🎧</h1>
 
       <button
-        className="open-player-button"
+        className="button"
         onClick={() => window.open('/player', '_blank')}
       >
         Otwórz Panel Gracza
       </button>
 
-      <div className="dj-panel">
+      <div className="">
         {!startingTeam ? (
           <TeamSelector setStartingTeam={(team) => {
             setStartingTeam(team);
